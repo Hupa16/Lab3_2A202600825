@@ -1,56 +1,56 @@
-# Lab 3: Chatbot vs ReAct Agent (Industry Edition)
+# Lab 3: Chatbot vs ReAct Agent — Personalized Vietnam Tour Planning
 
-Welcome to Phase 3 of the Agentic AI course! This lab focuses on moving from a simple LLM Chatbot to a sophisticated **ReAct Agent** with industry-standard monitoring.
+**Topic**: AI Trợ Lý Lập Kế Hoạch Tour Trọn Gói Cá Nhân Hóa (international travelers, English).
 
-## 🚀 Getting Started
+This repo implements the full **group score** checklist from [SCORING.md](SCORING.md): chatbot baseline, ReAct agent v1/v2, **3 tools**, telemetry, evaluation, traces, and group report.
 
-### 1. Setup Environment
-Copy the `.env.example` to `.env` and fill in your API keys:
+## Quick start
+
 ```bash
-cp .env.example .env
-```
-
-### 2. Install Dependencies
-```bash
+cp .env.example .env          # add OPENAI_API_KEY or GEMINI_API_KEY
 pip install -r requirements.txt
+
+python run_chatbot.py         # baseline (no tools)
+python run_agent.py           # ReAct v2 (default)
+python run_agent.py --version v1
+python run_evaluation.py      # Chatbot vs Agent comparison
+pytest tests/test_tour_tools.py -q
 ```
 
-### 3. Directory Structure
-- `src/tools/`: Extension point for your custom tools.
+## Project layout
 
-## 🏠 Running with Local Models (CPU)
+| Path | Purpose |
+|------|---------|
+| `src/chatbot/baseline.py` | Chatbot baseline (2 pts) |
+| `src/agent/agent.py` | ReAct v1 + v2 (7 + 7 pts) |
+| `src/tools/tour_tools.py` | 3 tour planning tools |
+| `src/telemetry/metrics.py` | Cost, tokens, latency (+bonus monitoring) |
+| `src/evaluation/runner.py` | Automated comparison (7 pts) |
+| `data/evaluation_cases.json` | Test cases |
+| `docs/TOOL_EVOLUTION.md` | Tool spec progression (4 pts) |
+| `report/traces/` | Success + failure traces (9 pts) |
+| `report/group_report/GROUP_REPORT.md` | Group submission template (filled) |
 
-If you don't want to use OpenAI or Gemini, you can run open-source models (like Phi-3) directly on your CPU using `llama-cpp-python`.
+## Three tools
 
-### 1. Download the Model
-Download the **Phi-3-mini-4k-instruct-q4.gguf** (approx 2.2GB) from Hugging Face:
-- [Phi-3-mini-4k-instruct-GGUF](https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf)
-- Direct Download: [phi-3-mini-4k-instruct-q4.gguf](https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf/resolve/main/Phi-3-mini-4k-instruct-q4.gguf)
+1. **`search_destinations`** — filter Vietnam catalog by region, VND/day budget, interests  
+2. **`estimate_tour_budget`** — line-item package cost (budget / standard / luxury)  
+3. **`build_itinerary`** — day-by-day plan (relax / explore / family)
 
-### 2. Place Model in Project
-Create a `models/` folder in the root and move the downloaded `.gguf` file there.
+## Agent versions
 
-### 3. Update `.env`
-Change your `DEFAULT_PROVIDER` and set the path:
-```env
-DEFAULT_PROVIDER=local
-LOCAL_MODEL_PATH=./models/Phi-3-mini-4k-instruct-q4.gguf
-```
+- **v1** (`ReActAgentV1`): minimal ReAct loop  
+- **v2** (`ReActAgentV2`): markdown strip, tool aliases, parse retry, duplicate guard, few-shot prompt  
 
-## 🎯 Lab Objectives
+## Local models
 
-1.  **Baseline Chatbot**: Observe the limitations of a standard LLM when faced with multi-step reasoning.
-2.  **ReAct Loop**: Implement the `Thought-Action-Observation` cycle in `src/agent/agent.py`.
-3.  **Provider Switching**: Swap between OpenAI and Gemini seamlessly using the `LLMProvider` interface.
-4.  **Failure Analysis**: Use the structured logs in `logs/` to identify why the agent fails (hallucinations, parsing errors).
-5.  **Grading & Bonus**: Follow the [SCORING.md](file:///Users/tindt/personal/ai-thuc-chien/day03-lab-agent/SCORING.md) to maximize your points and explore bonus metrics.
+See `.env.example` — set `DEFAULT_PROVIDER=local` and download Phi-3 GGUF into `models/`.
 
-## 🛠️ How to Use This Baseline
-The code is designed as a **Production Prototype**. It includes:
-- **Telemetry**: Every action is logged in JSON format for later analysis.
-- **Robust Provider Pattern**: Easily extendable to any LLM API.
-- **Clean Skeletons**: Focus on the logic that matters—the agent's reasoning process.
+## Grading
+
+- Group report: edit team name in `report/group_report/GROUP_REPORT.md`, run evaluation, paste metrics.  
+- Individual: `report/individual_reports/TEMPLATE_INDIVIDUAL_REPORT.md` → `individual_report.md`.
 
 ---
 
-*Happy Coding! Let's build agents that actually work.*
+*Happy Coding! Read the logs — traces are the truth.*

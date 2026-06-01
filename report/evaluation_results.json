@@ -1,0 +1,185 @@
+{
+  "agent_version": "v2",
+  "modes": {
+    "chatbot": {
+      "success_rate": 1.0,
+      "passed": 5,
+      "total": 5,
+      "results": [
+        {
+          "case_id": "multi_central_beach",
+          "case_type": "multi_step",
+          "mode": "chatbot",
+          "success": true,
+          "reason": "multi-step: answered without tool grounding (baseline)",
+          "tools_called": [],
+          "steps": 1,
+          "completed": true,
+          "latency_ms": 96809,
+          "tokens": 892
+        },
+        {
+          "case_id": "multi_family_south",
+          "case_type": "multi_step",
+          "mode": "chatbot",
+          "success": true,
+          "reason": "multi-step: answered without tool grounding (baseline)",
+          "tools_called": [],
+          "steps": 1,
+          "completed": true,
+          "latency_ms": 90165,
+          "tokens": 886
+        },
+        {
+          "case_id": "multi_usd_budget",
+          "case_type": "multi_step",
+          "mode": "chatbot",
+          "success": true,
+          "reason": "multi-step: answered without tool grounding (baseline)",
+          "tools_called": [],
+          "steps": 1,
+          "completed": true,
+          "latency_ms": 58925,
+          "tokens": 630
+        },
+        {
+          "case_id": "simple_destination",
+          "case_type": "simple",
+          "mode": "chatbot",
+          "success": true,
+          "reason": "simple question answered",
+          "tools_called": [],
+          "steps": 1,
+          "completed": true,
+          "latency_ms": 8417,
+          "tokens": 158
+        },
+        {
+          "case_id": "simple_visa",
+          "case_type": "simple",
+          "mode": "chatbot",
+          "success": true,
+          "reason": "simple question answered",
+          "tools_called": [],
+          "steps": 1,
+          "completed": true,
+          "latency_ms": 11391,
+          "tokens": 198
+        }
+      ]
+    },
+    "agent_v2": {
+      "success_rate": 0.4,
+      "passed": 2,
+      "total": 5,
+      "results": [
+        {
+          "case_id": "multi_central_beach",
+          "case_type": "multi_step",
+          "mode": "agent_v2",
+          "success": false,
+          "reason": "expected >=2 tools, got 0",
+          "tools_called": [],
+          "steps": 0,
+          "completed": true,
+          "latency_ms": 53913,
+          "tokens": 874
+        },
+        {
+          "case_id": "multi_family_south",
+          "case_type": "multi_step",
+          "mode": "agent_v2",
+          "success": false,
+          "reason": "expected >=2 tools, got 0",
+          "tools_called": [],
+          "steps": 0,
+          "completed": true,
+          "latency_ms": 55730,
+          "tokens": 844
+        },
+        {
+          "case_id": "multi_usd_budget",
+          "case_type": "multi_step",
+          "mode": "agent_v2",
+          "success": false,
+          "reason": "expected >=2 tools, got 0",
+          "tools_called": [],
+          "steps": 0,
+          "completed": true,
+          "latency_ms": 53103,
+          "tokens": 849
+        },
+        {
+          "case_id": "simple_destination",
+          "case_type": "simple",
+          "mode": "agent_v2",
+          "success": true,
+          "reason": "non-empty answer",
+          "tools_called": [],
+          "steps": 0,
+          "completed": true,
+          "latency_ms": 43976,
+          "tokens": 774
+        },
+        {
+          "case_id": "simple_visa",
+          "case_type": "simple",
+          "mode": "agent_v2",
+          "success": true,
+          "reason": "non-empty answer",
+          "tools_called": [],
+          "steps": 0,
+          "completed": true,
+          "latency_ms": 67161,
+          "tokens": 984
+        }
+      ]
+    }
+  },
+  "comparison": [
+    {
+      "case_id": "multi_central_beach",
+      "type": "multi_step",
+      "chatbot_success": true,
+      "agent_success": false,
+      "winner": "chatbot"
+    },
+    {
+      "case_id": "multi_family_south",
+      "type": "multi_step",
+      "chatbot_success": true,
+      "agent_success": false,
+      "winner": "chatbot"
+    },
+    {
+      "case_id": "multi_usd_budget",
+      "type": "multi_step",
+      "chatbot_success": true,
+      "agent_success": false,
+      "winner": "chatbot"
+    },
+    {
+      "case_id": "simple_destination",
+      "type": "simple",
+      "chatbot_success": true,
+      "agent_success": true,
+      "winner": "draw"
+    },
+    {
+      "case_id": "simple_visa",
+      "type": "simple",
+      "chatbot_success": true,
+      "agent_success": true,
+      "winner": "draw"
+    }
+  ],
+  "metrics": {
+    "request_count": 10,
+    "total_tokens": 7089,
+    "total_cost_usd": 0.0107,
+    "avg_latency_ms": 53959,
+    "p50_latency_ms": 55730,
+    "p99_latency_ms": 96809,
+    "avg_completion_to_prompt_ratio": 1.775
+  }
+}

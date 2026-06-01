@@ -1,0 +1,37 @@
+[
+  {
+    "id": "multi_central_beach",
+    "type": "multi_step",
+    "query": "Two travelers, 4 days in Central Vietnam, love beaches and food, max 2,000,000 VND per day, standard tier. Suggest destinations, total budget for Da Nang, and an explore itinerary.",
+    "min_tools": 2,
+    "required_tools": ["search_destinations"]
+  },
+  {
+    "id": "multi_family_south",
+    "type": "multi_step",
+    "query": "Family of 4, 5 days in South Vietnam, resort beaches, luxury tier. Find options, estimate Phu Quoc budget, family-style itinerary.",
+    "min_tools": 2,
+    "required_tools": ["estimate_tour_budget"]
+  },
+  {
+    "id": "multi_usd_budget",
+    "type": "multi_step",
+    "query": "Solo backpacker, 3 days North Vietnam trekking, about $60/day budget in USD, budget tier. Full plan please.",
+    "min_tools": 2,
+    "required_tools": []
+  },
+  {
+    "id": "simple_destination",
+    "type": "simple",
+    "query": "In one sentence, what is Hoi An famous for?",
+    "min_tools": 0,
+    "required_tools": []
+  },
+  {
+    "id": "simple_visa",
+    "type": "simple",
+    "query": "Do I need a visa for a short tourism trip to Vietnam? Answer briefly.",
+    "min_tools": 0,
+    "required_tools": []
+  }
+]
