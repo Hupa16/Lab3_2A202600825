@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Lab 3: Chatbot vs ReAct Agent — Personalized Vietnam Tour Planning
 
 **Topic**: AI Trợ Lý Lập Kế Hoạch Tour Trọn Gói Cá Nhân Hóa (international travelers, English).
@@ -54,3 +55,4 @@ See `.env.example` — set `DEFAULT_PROVIDER=local` and download Phi-3 GGUF into
 ---
 
 *Happy Coding! Read the logs — traces are the truth.*
+=======
